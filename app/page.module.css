@@ -3,7 +3,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
   font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
   color: #333;
@@ -148,8 +148,8 @@
 }
 
 .mediaCard {
-  background-color: #fff;
-  padding: 10px;
+  background-color:white;
+  
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
@@ -226,13 +226,15 @@
   }
 
   .poster {
-    max-width: 100%;
+    max-width: 90%;
     text-align: center;
   }
 
   .mediaList {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 10px;
+    gap: 5px;
+    /* padding: 30px; */
+    margin: 40px;
   }
 
   .modalContent {
@@ -242,6 +244,59 @@
 
   .info {
     width: 100%;
+  }
+}
+@media (max-width: 414px) { /* iPhone 14 Pro Max 縦向きに最適化 */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .logoContainer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .menu button {
+    margin: 5px 0;
+    width: 90%;
+    font-size: 0.9rem;
+    padding: 8px 0;
+  }
+
+  .trendingList {
+    gap: 12px;
+  }
+
+  .trendingItem {
+    min-width: 140px;
+    padding: 10px;
+  }
+
+  .mediaList {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .mediaCard h3 {
+    font-size: 1rem;
+  }
+
+  .details {
+    padding: 15px;
+  }
+
+  .modalContent {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .poster img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
