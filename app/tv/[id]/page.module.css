@@ -94,7 +94,7 @@
   }
 }
 
-/* 240px以下のスタイル（超小型デバイス用） */
+
 @media (max-width: 240px) {
   .detailContainer {
     padding: 1rem;
@@ -137,7 +137,7 @@
   }
 }
 
-/* タッチデバイス用の追加スタイル */
+
 @media (hover: none) {
   .backButton:hover {
     transform: none;

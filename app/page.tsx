@@ -116,7 +116,7 @@ export default function Home() {
 
       {/* トレンド映画 */}
       <div className={styles.section}>
-        <h2 className={styles.sectionTitle}>人気の動画🌟️</h2>
+        <h2 className={styles.sectionTitle}>人気の動画</h2>
       </div>
 
       {/* 検索バー */}
