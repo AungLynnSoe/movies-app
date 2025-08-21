@@ -1,4 +1,4 @@
-/* page.module.css */
+
 
 .container {
   max-width: 1200px;
@@ -9,7 +9,7 @@
   color: #333;
 }
 
-/* ナビゲーションバー */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -73,7 +73,7 @@
   margin-bottom: 10px;
 }
 
-/* トレンド映画リスト */
+
 .trendingList {
   display: flex;
   gap: 15px;
@@ -133,7 +133,14 @@
   border-color: #0070f3;
 }
 
-/* メディアカード */
+.poster {
+  flex: 1;
+  max-width: 300px;
+  position: relative;
+  
+
+}
+
 .mediaList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));

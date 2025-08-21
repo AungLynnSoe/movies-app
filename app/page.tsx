@@ -1,10 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import styles from "./page.module.css";
-
+import { useRouter, useSearchParams } from "next/navigation"; // ← 追加
+import styles from "./page.module.css"; 
 type Media = {
   id: number;
   title?: string;
@@ -17,11 +15,17 @@ type Media = {
 };
 
 export default function Home() {
-  const [category, setCategory] = useState<"movies" | "tv" | "animation">("movies");
+
+  const searchParams = useSearchParams();
+  const initialCategory =
+    (searchParams.get("category") as "movies" | "tv" | "animation") || "movies";
+
+  const [category, setCategory] = useState<"movies" | "tv" | "animation">(initialCategory);
   const [mediaList, setMediaList] = useState<Media[]>([]);
   const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+  
 
   const API_KEY = "ba1cec48fc1dd704e1380ca13662dc44";
   const LANGUAGE_PAGE = "&language=ja&page=1";
@@ -59,6 +63,16 @@ export default function Home() {
     fetchMedia();
     fetchTrendingMovies();
   }, [category, searchQuery]);
+
+  // 映画カードがクリックされたときの処理
+ const handleCardClick = (id: number) => {
+  if (category === "tv") {
+    router.push(`/tv/${id}?from=${category}`);
+  } else {
+    // movies と animation は映画APIを使っているので /movie
+    router.push(`/movie/${id}?from=${category}`);
+  }
+};
 
   return (
     <div className={styles.container}>
@@ -113,7 +127,7 @@ export default function Home() {
           <div
             className={styles.mediaCard}
             key={item.id}
-            onClick={() => router.push(`/movie/${item.id}?from=${category}`)}
+            onClick={() => handleCardClick(item.id)}
           >
             {item.poster_path && (
               <Image

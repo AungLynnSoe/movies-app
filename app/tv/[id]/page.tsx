@@ -5,30 +5,29 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import styles from "./page.module.css";
 
-type MediaDetail = {
+
+type TvDetail = {
   id: number;
-  title?: string;
   name?: string;
   poster_path: string | null;
-  release_date?: string;
   first_air_date?: string;
   overview?: string;
   vote_average?: number;
   genres?: { id: number; name: string }[];
 };
 
-export default function MovieDetailPage() {
+export default function TvDetailPage() {
   const { id } = useParams();
-  const [media, setMedia] = useState<MediaDetail | null>(null);
+  const [media, setMedia] = useState<TvDetail | null>(null);
   const API_KEY = "ba1cec48fc1dd704e1380ca13662dc44";
   const router = useRouter();
   const searchParams = useSearchParams();
-  const fromCategory = searchParams.get("from") || "movies"; // ← 追加
+  const fromCategory = searchParams.get("from") || "tv";
 
   useEffect(() => {
     async function fetchDetail() {
       const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=ja`
+        `https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=ja`
       );
       const data = await res.json();
       setMedia(data);
@@ -44,17 +43,17 @@ export default function MovieDetailPage() {
         {media.poster_path && (
           <Image
             src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
-            alt={media.title || media.name || ""}
+            alt={media.name || ""}
             width={300}
             height={450}
           />
         )}
       </div>
       <div className={styles.info}>
-        <h1>{media.title || media.name}</h1>
+        <h1>{media.name}</h1>
         <div className={styles.meta}>
           <span className={styles.date}>
-            {media.release_date || media.first_air_date || "不明"}
+            {media.first_air_date || "不明"}
           </span>
           <span className={styles.status}>Released</span>
         </div>
@@ -69,9 +68,8 @@ export default function MovieDetailPage() {
         <p>評価: {media.vote_average?.toFixed(1) || "N/A"}</p>
       </div>
 
-      {/* 戻るボタン */}
       <button
-        onClick={() => router.push(`/?category=${fromCategory}`)} // ← 修正
+        onClick={() => router.push(`/?category=${fromCategory}`)}
         className={styles.backButton}
       >
         戻る
