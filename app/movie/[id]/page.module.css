@@ -66,3 +66,36 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
+@media (max-width: 960px) {
+  .detailContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+  .poster img {
+    width: 90%;
+    max-width: 300px;
+  }
+  .info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .detailContainer {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .poster img {
+    width: 100%;
+    max-width: 200px;
+  }
+  .info {
+    font-size: 0.85rem;
+  }
+  .genre {
+    font-size: 0.75rem;
+    padding: 0.1rem 0.4rem;
+  }
+}
+

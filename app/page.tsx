@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation"; // ← 追加
+import { useRouter } from "next/navigation"; // ← 追加
 import styles from "./page.module.css"; 
 type Media = {
   id: number;
@@ -28,7 +28,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   
- const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+ const API_KEY = "ba1cec48fc1dd704e1380ca13662dc44";
   const LANGUAGE_PAGE = "&language=ja&page=1";
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

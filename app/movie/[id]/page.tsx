@@ -71,7 +71,7 @@ export default function MovieDetailPage() {
 
       {/* 戻るボタン */}
       <button
-        onClick={() => router.push(`/?category=${fromCategory}`)} // ← 修正
+        onClick={() => router.push(`/?category=${fromCategory}`)} 
         className={styles.backButton}
       >
         戻る

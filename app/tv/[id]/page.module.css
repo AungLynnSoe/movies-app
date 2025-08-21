@@ -66,3 +66,81 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
+@media (max-width: 960px) {
+  .detailContainer {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .poster {
+    text-align: center;
+  }
+  
+  .poster img {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .meta {
+    justify-content: center;
+  }
+  
+  .backButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* 240px以下のスタイル（超小型デバイス用） */
+@media (max-width: 240px) {
+  .detailContainer {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .poster img {
+    max-width: 150px;
+  }
+  
+  .meta {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .date,
+  .status {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  .genres {
+    justify-content: center;
+  }
+  
+  .genre {
+    font-size: 0.8rem;
+    padding: 0.15rem 0.4rem;
+  }
+  
+  .backButton {
+    position: static;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* タッチデバイス用の追加スタイル */
+@media (hover: none) {
+  .backButton:hover {
+    transform: none;
+    background-color: #3f51b5;
+  }
+}
