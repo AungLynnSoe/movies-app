@@ -17,10 +17,11 @@ type Media = {
 export default function Home() {
 
   const searchParams = useSearchParams();
-  const initialCategory =
-    (searchParams.get("category") as "movies" | "tv" | "animation") || "movies";
+  // const initialCategory =
+  //   (searchParams.get("category") as "movies" | "tv" | "animation") || "movies";
 
-  const [category, setCategory] = useState<"movies" | "tv" | "animation">(initialCategory);
+  // const [category, setCategory] = useState<"movies" | "tv" | "animation">(initialCategory);
+  const [category, setCategory] = useState<"movies" | "tv" | "animation">("movies");
   const [mediaList, setMediaList] = useState<Media[]>([]);
   const [trendingMovies, setTrendingMovies] = useState<Media[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +30,12 @@ export default function Home() {
 
   const API_KEY = "ba1cec48fc1dd704e1380ca13662dc44";
   const LANGUAGE_PAGE = "&language=ja&page=1";
+    useEffect(() => {
+    const param = searchParams.get("category") as "movies" | "tv" | "animation" | null;
+    if (param) {
+      setCategory(param);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchMedia = async () => {
