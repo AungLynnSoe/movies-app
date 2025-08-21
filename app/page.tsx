@@ -1,5 +1,6 @@
 "use client";
 export const dynamic = "force-dynamic";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation"; // ← 追加
@@ -17,7 +18,6 @@ type Media = {
 
 export default function Home() {
 
-  const searchParams = useSearchParams();
   // const initialCategory =
   //   (searchParams.get("category") as "movies" | "tv" | "animation") || "movies";
 
@@ -28,15 +28,15 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
   
-
-  const API_KEY = "ba1cec48fc1dd704e1380ca13662dc44";
+ const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
   const LANGUAGE_PAGE = "&language=ja&page=1";
-    useEffect(() => {
-    const param = searchParams.get("category") as "movies" | "tv" | "animation" | null;
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const param = params.get("category") as "movies" | "tv" | "animation" | null;
     if (param) {
       setCategory(param);
     }
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
     const fetchMedia = async () => {
